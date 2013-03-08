@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Color:</b>
+  <%= @card.color %>
+</p>
+
+<p>
+  <b>Match:</b>
+  <%= @card.match_id %>
+</p>
+
+<p>
+  <b>Team:</b>
+  <%= @card.team_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_card_path(@card) %> |
+<%= link_to 'Back', cards_path %>

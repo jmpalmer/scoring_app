@@ -1,4 +1,6 @@
 ScoringApp::Application.routes.draw do
+  resources :cards
+
   resources :penalties
 
   resources :climb_levels
