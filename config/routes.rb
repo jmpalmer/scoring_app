@@ -1,4 +1,6 @@
 ScoringApp::Application.routes.draw do
+  resources :matches
+
   resources :alliances
 
   resources :teams

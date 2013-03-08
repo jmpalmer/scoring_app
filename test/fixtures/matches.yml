@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  red_alliance_id: 1
+  blue_alliance_id: 1
+  notes: MyText
+
+two:
+  red_alliance_id: 1
+  blue_alliance_id: 1
+  notes: MyText
