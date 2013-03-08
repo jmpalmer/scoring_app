@@ -1,0 +1,27 @@
+<h1>Listing alliances</h1>
+
+<table>
+  <tr>
+    <th>Team1</th>
+    <th>Team2</th>
+    <th>Team3</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @alliances.each do |alliance| %>
+  <tr>
+    <td><%= alliance.team1_id %></td>
+    <td><%= alliance.team2_id %></td>
+    <td><%= alliance.team3_id %></td>
+    <td><%= link_to 'Show', alliance %></td>
+    <td><%= link_to 'Edit', edit_alliance_path(alliance) %></td>
+    <td><%= link_to 'Destroy', alliance, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Alliance', new_alliance_path %>

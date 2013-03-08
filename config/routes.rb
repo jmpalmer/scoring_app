@@ -1,4 +1,6 @@
 ScoringApp::Application.routes.draw do
+  resources :alliances
+
   resources :teams
 
   # The priority is based upon order of creation:

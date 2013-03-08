@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Team1:</b>
+  <%= @alliance.team1_id %>
+</p>
+
+<p>
+  <b>Team2:</b>
+  <%= @alliance.team2_id %>
+</p>
+
+<p>
+  <b>Team3:</b>
+  <%= @alliance.team3_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_alliance_path(@alliance) %> |
+<%= link_to 'Back', alliances_path %>
