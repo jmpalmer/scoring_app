@@ -1,0 +1,41 @@
+<%= form_for(@teleop_score) do |f| %>
+  <% if @teleop_score.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@teleop_score.errors.count, "error") %> prohibited this teleop_score from being saved:</h2>
+
+      <ul>
+      <% @teleop_score.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :high %><br />
+    <%= f.number_field :high %>
+  </div>
+  <div class="field">
+    <%= f.label :medium %><br />
+    <%= f.number_field :medium %>
+  </div>
+  <div class="field">
+    <%= f.label :low %><br />
+    <%= f.number_field :low %>
+  </div>
+  <div class="field">
+    <%= f.label :pyramid %><br />
+    <%= f.number_field :pyramid %>
+  </div>
+  <div class="field">
+    <%= f.label :match_id %><br />
+    <%= f.number_field :match_id %>
+  </div>
+  <div class="field">
+    <%= f.label :alliance_id %><br />
+    <%= f.number_field :alliance_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

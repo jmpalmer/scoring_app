@@ -1,4 +1,6 @@
 ScoringApp::Application.routes.draw do
+  resources :teleop_scores
+
   resources :matches
 
   resources :alliances
