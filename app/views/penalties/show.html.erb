@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Tech foul:</b>
+  <%= @penalty.tech_foul %>
+</p>
+
+<p>
+  <b>Foul:</b>
+  <%= @penalty.foul %>
+</p>
+
+<p>
+  <b>Match:</b>
+  <%= @penalty.match_id %>
+</p>
+
+<p>
+  <b>Alliance:</b>
+  <%= @penalty.alliance_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_penalty_path(@penalty) %> |
+<%= link_to 'Back', penalties_path %>

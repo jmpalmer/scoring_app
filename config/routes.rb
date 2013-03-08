@@ -1,4 +1,6 @@
 ScoringApp::Application.routes.draw do
+  resources :penalties
+
   resources :climb_levels
 
   resources :auton_scores
