@@ -1,4 +1,4 @@
-<%= form_for(@match) do |f| %>
+<%= form_tag("/matches")  %>
   <% if @match.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@match.errors.count, "error") %> prohibited this match from being saved:</h2>
@@ -11,19 +11,102 @@
     </div>
   <% end %>
 
+  <br />
+  <h3> Red Teams </h3>
   <div class="field">
-    <%= f.label :red_alliance_id %><br />
-    <%= f.number_field :red_alliance_id %>
+    <%= label_tag :red_team1 %> 
+    <%= collection_select(:matches, :red_team_id1, @teams, :id, :number, :prompt => true) %>
   </div>
   <div class="field">
-    <%= f.label :blue_alliance_id %><br />
-    <%= f.number_field :blue_alliance_id %>
+    <%= label_tag :red_team2 %> 
+    <%= collection_select(:matches, :red_team_id2, @teams, :id, :number, :prompt => true) %>
   </div>
   <div class="field">
-    <%= f.label :notes %><br />
-    <%= f.text_area :notes %>
+    <%= label_tag :red_team3 %> 
+    <%= collection_select(:matches, :red_team_id3, @teams, :id, :number, :prompt => true) %>
+  </div>
+  
+  <h3> Blue Teams </h3>
+  <div class="field">
+    <%= label_tag :blue_team1 %> 
+    <%= collection_select(:matches, :blue_team_id1, @teams, :id, :number, :prompt => true) %>
+  </div>
+  <div class="field">
+    <%= label_tag :blue_team2 %> 
+    <%= collection_select(:matches, :blue_team_id2, @teams, :id, :number, :prompt => true) %>
+  </div>
+  <div class="field">
+    <%= label_tag :blue_team3 %> 
+    <%= collection_select(:matches, :blue_team_id3, @teams, :id, :number, :prompt => true) %>
+  </div>
+  
+  <br/>
+  <h3>Scores</h3>
+  
+  <h4>Red Team Scores</h4>
+  
+  <h5> Auton </h5>
+  <div class="field">
+    <%= label_tag :auton_high %>: <%= number_field_tag :red_alliance_auton_high %> &nbsp;
+    <%= label_tag :auton_medium %>:  <%= number_field_tag :red_alliance_auton_medium %>&nbsp; 
+    <%= label_tag :auton_low%>: <%= number_field_tag :red_alliance_auton_low %> 
+  </div>
+  
+  <h5> Teleop </h5>
+  <div class="field">
+    <%= label_tag :teleop_high %>: <%= number_field_tag :red_alliance_teleop_high %> &nbsp;
+    <%= label_tag :teleop_medium %>:  <%= number_field_tag :red_alliance_teleop_medium %>&nbsp; 
+    <%= label_tag :teleop_low%>: <%= number_field_tag :red_alliance_teleop_low %> <br />
+    <%= label_tag :teleop_pyramid%>: <%= number_field_tag :red_alliance_teleop_pyramid %> <br />
+    <%= label_tag :red_team1_climb%>:<%= number_field_tag :red_team1_climb %>  
+    <%= label_tag :red_team2_climb%>:<%= number_field_tag :red_team2_climb %>  
+    <%= label_tag :red_team3_climb%>:<%= number_field_tag :red_team3_climb %>  
+  </div>
+  
+  <br />
+  <h4>Blue Team Scores</h4>
+  
+  <h5> Auton </h5>
+  <div class="field">
+    <%= label_tag :auton_high %>: <%= number_field_tag :blue_alliance_auton_high %> &nbsp;
+    <%= label_tag :auton_medium %>:  <%= number_field_tag :blue_alliance_auton_medium %>&nbsp; 
+    <%= label_tag :auton_low%>: <%= number_field_tag :blue_alliance_auton_low %> 
+  </div>
+  
+  <h5> Teleop </h5>
+  <div class="field">
+    <%= label_tag :teleop_high %>: <%= number_field_tag :blue_alliance_teleop_high %> &nbsp;
+    <%= label_tag :teleop_medium %>:  <%= number_field_tag :blue_alliance_teleop_medium %>&nbsp; 
+    <%= label_tag :teleop_low%>: <%= number_field_tag :blue_alliance_teleop_low %> <br />
+    <%= label_tag :teleop_pyramid%>: <%= number_field_tag :blue_alliance_teleop_pyramid %>  <br />
+    <%= label_tag :red_team1_climb%>:<%= number_field_tag :red_team1_climb %>  
+    <%= label_tag :red_team2_climb%>:<%= number_field_tag :red_team2_climb %>  
+    <%= label_tag :red_team3_climb%>:<%= number_field_tag :red_team3_climb %>  
+  </div>  
+  
+  
+  <h3> Penalties </h3>
+  <h4> Red Team Penalties</h4>
+  <%= label_tag :red_tech_fouls %>: <%= number_field_tag :red_tech_fouls %> &nbsp;
+  <%= label_tag :red_fouls %>: <%= number_field_tag :red_fouls %> <br/>
+  <%= label_tag :red_team1_cards%>: Red <%= check_box_tag :red_team1_red %> Yellow <%= check_box_tag :red_team1_yellow %>  <br/> 
+  <%= label_tag :red_team2_cards%>: Red <%= check_box_tag :red_team2_red %> Yellow <%= check_box_tag :red_team2_yellow %>  <br/>
+  <%= label_tag :red_team3_cards%>: Red <%= check_box_tag :red_team3_red %> Yellow <%= check_box_tag :red_team3_yellow %>  <br/>
+  
+  <h4> Blue Team Penalties</h4>
+  <%= label_tag :blue_tech_fouls %>: <%= number_field_tag :blue_tech_fouls %> &nbsp;
+  <%= label_tag :blue_fouls %>: <%= number_field_tag :blue_fouls %> <br/>
+  <%= label_tag :blue_team1_cards%>: Red <%= check_box_tag :blue_team1_red %> Yellow <%= check_box_tag :blue_team1_yellow %>  <br/> 
+  <%= label_tag :blue_team2_cards%>: Red <%= check_box_tag :blue_team2_red %> Yellow <%= check_box_tag :blue_team2_yellow %>  <br/>
+  <%= label_tag :blue_team3_cards%>: Red <%= check_box_tag :blue_team3_red %> Yellow <%= check_box_tag :blue_team3_yellow %>  <br/>
+  
+  <br />
+  
+  <div class="field">
+    <%= label_tag :notes %><br />
+    <%= text_area_tag :notes %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= submit_tag %>
   </div>
-<% end %>
+
