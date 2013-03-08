@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  high: 1
+  medium: 1
+  low: 1
+  pyramid: 1
+  match_id: 1
+  alliance_id: 1
+
+two:
+  high: 1
+  medium: 1
+  low: 1
+  pyramid: 1
+  match_id: 1
+  alliance_id: 1

@@ -1,4 +1,6 @@
 ScoringApp::Application.routes.draw do
+  resources :auton_scores
+
   resources :teleop_scores
 
   resources :matches
