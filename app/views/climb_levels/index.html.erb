@@ -1,0 +1,27 @@
+<h1>Listing climb_levels</h1>
+
+<table>
+  <tr>
+    <th>Height</th>
+    <th>Match</th>
+    <th>Team</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @climb_levels.each do |climb_level| %>
+  <tr>
+    <td><%= climb_level.height %></td>
+    <td><%= climb_level.match_id %></td>
+    <td><%= climb_level.team_id %></td>
+    <td><%= link_to 'Show', climb_level %></td>
+    <td><%= link_to 'Edit', edit_climb_level_path(climb_level) %></td>
+    <td><%= link_to 'Destroy', climb_level, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Climb level', new_climb_level_path %>
