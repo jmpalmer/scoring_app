@@ -2,12 +2,14 @@
 
 <p>
   <b>Red alliance:</b>
-  <%= @match.red_alliance_id %>
+  <% @red_team.each do |team| %>
+  <%= "#{team.name}\t #{team.number}\n"
+  <% end %>
 </p>
 
 <p>
   <b>Blue alliance:</b>
-  <%= @match.blue_alliance_id %>
+  <%= #@blue_alliance.join(", ") %>
 </p>
 
 <p>
@@ -16,5 +18,5 @@
 </p>
 
 
-<%= link_to 'Edit', edit_match_path(@match) %> |
+
 <%= link_to 'Back', matches_path %>

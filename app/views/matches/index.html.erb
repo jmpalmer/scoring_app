@@ -7,7 +7,6 @@
     <th>Notes</th>
     <th></th>
     <th></th>
-    <th></th>
   </tr>
 
 <% @matches.each do |match| %>
@@ -16,7 +15,6 @@
     <td><%= match.blue_alliance_id %></td>
     <td><%= match.notes %></td>
     <td><%= link_to 'Show', match %></td>
-    <td><%= link_to 'Edit', edit_match_path(match) %></td>
     <td><%= link_to 'Destroy', match, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>

@@ -14,7 +14,11 @@ class MatchesController < ApplicationController
   # GET /matches/1.json
   def show
     @match = Match.find(params[:id])
-
+    red_alliance = Alliance.find(@match.red_alliance_id)
+    @red_team = [Team.find(red_alliance.team1_id)]
+    @red_team << [Team.find(red_alliance.team2_id)]
+    @red_team << [Team.find(red_alliance.team3_id)]
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @match }
@@ -42,7 +46,7 @@ class MatchesController < ApplicationController
   # POST /matches.json
   def create
     
-    puts " >>> \n\n\n #{params} \n\n\n"
+    puts " >>> \n\n\n " + params[:red_alliance_teleop_medium]
     
     @match = Match.new
     
@@ -63,40 +67,40 @@ class MatchesController < ApplicationController
     @match.red_alliance_id = @red_alliance.id
     @match.blue_alliance_id = @blue_alliance.id
     
-    @match.notes = params[:matches][:notes]
+    @match.notes = params[:notes]
     
     @match.save
     
     @red_teleop = TeleopScore.new
-    @red_teleop.high = params[:matches][:red_alliance_teleop_high].to_i || 0
-    @red_teleop.medium = params[:matches][:red_alliance_teleop_medium].to_i || 0
-    @red_teleop.low = params[:matches][:red_alliance_teleop_low].to_i || 0
-    @red_teleop.pyramid = params[:matches][:red_alliance_teleop_pyramid].to_i || 0
+    @red_teleop.high = params[:red_alliance_teleop_high].to_i 
+    @red_teleop.medium = params[:red_alliance_teleop_medium].to_i 
+    @red_teleop.low = params[:red_alliance_teleop_low].to_i 
+    @red_teleop.pyramid = params[:red_alliance_teleop_pyramid].to_i 
     @red_teleop.match_id = @match.id
     @red_teleop.alliance_id = @red_alliance.id
     @red_teleop.save
     
     @blue_teleop = TeleopScore.new
-    @blue_teleop.high = params[:matches][:blue_alliance_teleop_high].to_i || 0
-    @blue_teleop.medium = params[:matches][:blue_alliance_teleop_medium].to_i || 0
-    @blue_teleop.low = params[:matches][:blue_alliance_teleop_low].to_i || 0
-    @blue_teleop.pyramid = params[:matches][:blue_alliance_teleop_pyramid].to_i || 0
+    @blue_teleop.high = params[:blue_alliance_teleop_high].to_i 
+    @blue_teleop.medium = params[:blue_alliance_teleop_medium].to_i 
+    @blue_teleop.low = params[:blue_alliance_teleop_low].to_i 
+    @blue_teleop.pyramid = params[:blue_alliance_teleop_pyramid].to_i 
     @blue_teleop.match_id = @match.id
     @blue_teleop.alliance_id = @blue_alliance.id
     @blue_teleop.save
     
     @red_auton = AutonScore.new
-    @red_auton.high = params[:matches][:red_alliance_auton_high].to_i || 0
-    @red_auton.medium = params[:matches][:red_alliance_auton_medium].to_i || 0
-    @red_auton.low = params[:matches][:red_alliance_auton_low].to_i || 0
+    @red_auton.high = params[:red_alliance_auton_high].to_i 
+    @red_auton.medium = params[:red_alliance_auton_medium].to_i 
+    @red_auton.low = params[:red_alliance_auton_low].to_i 
     @red_auton.match_id = @match.id
     @red_auton.alliance_id = @red_alliance.id
     @red_auton.save
     
     @blue_auton = AutonScore.new
-    @blue_auton.high = params[:matches][:blue_alliance_auton_high].to_i || 0
-    @blue_auton.medium = params[:matches][:blue_alliance_auton_medium].to_i || 0
-    @blue_auton.low = params[:matches][:blue_alliance_auton_low].to_i || 0
+    @blue_auton.high = params[:blue_alliance_auton_high].to_i 
+    @blue_auton.medium = params[:blue_alliance_auton_medium].to_i 
+    @blue_auton.low = params[:blue_alliance_auton_low].to_i 
     @blue_auton.match_id = @match.id
     @blue_auton.alliance_id = @blue_alliance.id
     @blue_auton.save
@@ -107,17 +111,17 @@ class MatchesController < ApplicationController
     
     @red1_climb.team_id = @red_alliance.team1_id
     @red1_climb.match_id = @match.id
-    @red1_climb.height = params[:matches][:red_team1_climb].to_i
+    @red1_climb.height = params[:red_team1_climb].to_i
     @red1_climb.save
     
     @red2_climb.team_id = @red_alliance.team2_id
     @red2_climb.match_id = @match.id
-    @red2_climb.height = params[:matches][:red_team2_climb].to_i
+    @red2_climb.height = params[:red_team2_climb].to_i
     @red2_climb.save
   
     @red3_climb.team_id = @red_alliance.team3_id
     @red3_climb.match_id = @match.id
-    @red3_climb.height = params[:matches][:red_team3_climb].to_i
+    @red3_climb.height = params[:red_team3_climb].to_i
     @red3_climb.save
 
     @blue1_climb = ClimbLevel.new
@@ -126,34 +130,34 @@ class MatchesController < ApplicationController
     
     @blue1_climb.team_id = @blue_alliance.team1_id
     @blue1_climb.match_id = @match.id
-    @blue1_climb.height = params[:matches][:blue_team1_climb].to_i
+    @blue1_climb.height = params[:blue_team1_climb].to_i
     @blue1_climb.save
     
     @blue2_climb.team_id = @blue_alliance.team2_id
     @blue2_climb.match_id = @match.id
-    @blue2_climb.height = params[:matches][:blue_team2_climb].to_i
+    @blue2_climb.height = params[:blue_team2_climb].to_i
     @blue2_climb.save
     
     @blue3_climb.team_id = @blue_alliance.team3_id
     @blue3_climb.match_id = @match.id
-    @blue3_climb.height = params[:matches][:blue_team3_climb].to_i
+    @blue3_climb.height = params[:blue_team3_climb].to_i
     @blue3_climb.save
     
     @red_penalties = Penalty.new
     @red_penalties.match_id = @match.id
     @red_penalties.alliance_id = @red_alliance.id
-    @red_penalties.tech_foul = params[:matches][:red_tech_fouls]
-    @red_penalties.foul = params[:matches][:red_fouls]
+    @red_penalties.tech_foul = params[:red_tech_fouls]
+    @red_penalties.foul = params[:red_fouls]
     @red_penalties.save
     
     @blue_penalties = Penalty.new
     @blue_penalties.match_id = @match.id
     @blue_penalties.alliance_id = @blue_alliance.id
-    @blue_penalties.tech_foul = params[:matches][:blue_tech_fouls]
-    @blue_penalties.foul = params[:matches][:blue_fouls]
+    @blue_penalties.tech_foul = params[:blue_tech_fouls]
+    @blue_penalties.foul = params[:blue_fouls]
     @blue_penalties.save
     
-    if !params[:matches][:red_team1_yellow].nil?
+    if !params[:red_team1_yellow].nil?
       @card = Card.new
       @card.color = "yellow"
       @card.match_id = @match.id
@@ -161,7 +165,7 @@ class MatchesController < ApplicationController
       @card.save
     end
     
-    if !params[:matches][:red_team2_yellow].nil?
+    if !params[:red_team2_yellow].nil?
       @card = Card.new
       @card.color = "yellow"
       @card.match_id = @match.id
@@ -169,7 +173,7 @@ class MatchesController < ApplicationController
       @card.save
     end
     
-    if !params[:matches][:red_team3_yellow].nil?
+    if !params[:red_team3_yellow].nil?
       @card = Card.new
       @card.color = "yellow"
       @card.match_id = @match.id
@@ -178,7 +182,7 @@ class MatchesController < ApplicationController
     end
     
     
-    if !params[:matches][:red_team1_red].nil?
+    if !params[:red_team1_red].nil?
       @card = Card.new
       @card.color = "red"
       @card.match_id = @match.id
@@ -186,7 +190,7 @@ class MatchesController < ApplicationController
       @card.save
     end
     
-    if !params[:matches][:red_team2_red].nil?
+    if !params[:red_team2_red].nil?
       @card = Card.new
       @card.color = "red"
       @card.match_id = @match.id
@@ -194,7 +198,7 @@ class MatchesController < ApplicationController
       @card.save
     end
     
-    if !params[:matches][:red_team3_red].nil?
+    if !params[:red_team3_red].nil?
       @card = Card.new
       @card.color = "red"
       @card.match_id = @match.id
@@ -204,7 +208,7 @@ class MatchesController < ApplicationController
     
     
     
-    if !params[:matches][:blue_team1_yellow].nil?
+    if !params[:blue_team1_yellow].nil?
       @card = Card.new
       @card.color = "yellow"
       @card.match_id = @match.id
@@ -212,7 +216,7 @@ class MatchesController < ApplicationController
       @card.save
     end
     
-    if !params[:matches][:blue_team2_yellow].nil?
+    if !params[:blue_team2_yellow].nil?
       @card = Card.new
       @card.color = "yellow"
       @card.match_id = @match.id
@@ -220,7 +224,7 @@ class MatchesController < ApplicationController
       @card.save
     end
     
-    if !params[:matches][:blue_team3_yellow].nil?
+    if !params[:blue_team3_yellow].nil?
       @card = Card.new
       @card.color = "yellow"
       @card.match_id = @match.id
@@ -229,7 +233,7 @@ class MatchesController < ApplicationController
     end
     
     
-    if !params[:matches][:blue_team1_red].nil?
+    if !params[:blue_team1_red].nil?
       @card = Card.new
       @card.color = "red"
       @card.match_id = @match.id
@@ -237,7 +241,7 @@ class MatchesController < ApplicationController
       @card.save
     end
     
-    if !params[:matches][:blue_team2_red].nil?
+    if !params[:blue_team2_red].nil?
       @card = Card.new
       @card.color = "red"
       @card.match_id = @match.id
@@ -245,7 +249,7 @@ class MatchesController < ApplicationController
       @card.save
     end
     
-    if !params[:matches][:blue_team3_red].nil?
+    if !params[:blue_team3_red].nil?
       @card = Card.new
       @card.color = "red"
       @card.match_id = @match.id
